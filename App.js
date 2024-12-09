@@ -1,4 +1,4 @@
-import CinemaView from "./src/views/Cinema/CinemaView";
+import CinemasView from "./src/views/Cinema/CinemasView";
 import CinemaDetailView from "./src/views/Cinema/CinemaDetailView";
 import MovieView from "./src/views/Movie/MovieView";
 import store from "./src/redux/store";
@@ -12,9 +12,9 @@ const Stack = createStackNavigator();
 const Routes = () => (
 	<NavigationContainer>
 		<Stack.Navigator
-			initialRouteName="CinemaView"
+			initialRouteName="CinemasView"
 			screenOptions={{ headerShown: false }}>
-			<Stack.Screen name="CinemaView" component={CinemaView} />
+			<Stack.Screen name="CinemasView" component={CinemasView} />
 			<Stack.Screen name="CinemaDetailView" component={CinemaDetailView} />
 			<Stack.Screen name="MovieView" component={MovieView} />
 		</Stack.Navigator>

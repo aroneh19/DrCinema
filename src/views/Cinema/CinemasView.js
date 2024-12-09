@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
-import { View, FlatList, Text, ActivityIndicator, StyleSheet } from "react-native";
+import {
+	View,
+	FlatList,
+	Text,
+	ActivityIndicator,
+	StyleSheet,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemas } from "../../redux/actions/cinemaActions";
 import Cinema from "../../components/Cinema/CinemaList"; // Reusable Cinema component
 
-const CinemasScreen = () => {
+const CinemasView = () => {
 	const dispatch = useDispatch();
-
+	
 	// Access Redux state
 	const { cinemas, loading, error } = useSelector((state) => state.cinema);
 
@@ -69,4 +75,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default CinemasScreen;
+export default CinemasView;
