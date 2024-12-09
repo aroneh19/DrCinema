@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import CinemaView from "./src/views/Cinema/CinemaView";
+import CinemaDetailView from "./src/views/Cinema/CinemaDetailView";
+import MovieView from "./src/views/Movie/MovieView";
+import store from "./src/redux/store";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Provider } from "react-redux";
+const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Routes = () => (
+	<NavigationContainer>
+		<Stack.Navigator
+			initialRouteName="CinemaView"
+			screenOptions={{ headerShown: false }}>
+			<Stack.Screen name="CinemaView" component={CinemaView} />
+			<Stack.Screen name="CinemaDetailView" component={CinemaDetailView} />
+			<Stack.Screen name="MovieView" component={MovieView} />
+		</Stack.Navigator>
+	</NavigationContainer>
+);
+
+const App = () => (
+	<Provider store={store}>
+		<Routes />
+	</Provider>
+);
+export default App;
