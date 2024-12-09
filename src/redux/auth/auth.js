@@ -1,8 +1,11 @@
 import { Base64 } from 'js-base64';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const baseUrl = 'https://api.kvikmyndir.is';
-export const username = 'aroneh19';
-export const password = 'Gateway.1';
+export const username = process.env.USERNAME;
+export const password = process.env.PASSWORD;
 export const base64Credentials = Base64.encode(`${username}:${password}`);
 
 export const getAccessToken = async () => {
