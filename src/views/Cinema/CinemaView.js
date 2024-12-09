@@ -8,23 +8,20 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemas } from "../../redux/actions/cinemaActions";
-import Cinema from "../../components/Cinema/CinemaList"; // Reusable Cinema component
+import Cinema from "../../components/Cinema/CinemaList";
+import {useNavigation} from "@react-navigation/native"; // Reusable Cinema component
 
-const CinemasView = () => {
+const CinemaView = () => {
+	const navigation = useNavigation();
 	const dispatch = useDispatch();
 	
 	// Access Redux state
-	const { cinemas, loading, error } = useSelector((state) => state.cinema);
+	const { cinemas, error } = useSelector((state) => state.cinema);
 
 	// Dispatch getCinemas when the component mounts
 	useEffect(() => {
 		dispatch(getCinemas());
 	}, [dispatch]);
-
-	// Display a loading spinner while fetching data
-	if (loading) {
-		return <ActivityIndicator size="large" style={styles.loading} />;
-	}
 
 	// Display an error message if fetching fails
 	if (error) {
@@ -39,7 +36,7 @@ const CinemasView = () => {
 	const renderCinemaItem = ({ item }) => (
 		<Cinema
 			cinema={item}
-			onPress={() => console.log(`Navigating to details for ${item.name}`)}
+			onPress={() => navigation.navigate("MovieList", { cinema: item })}
 		/>
 	);
 
@@ -75,4 +72,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default CinemasView;
+export default CinemaView;
