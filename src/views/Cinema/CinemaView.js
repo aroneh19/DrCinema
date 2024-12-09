@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, FlatList, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCinemas } from "../../redux/actions/cinemaActions";
-import Cinema from "../../components/CinemaList/CinemaList"; // Reusable Cinema component
+import Cinema from "../../components/Cinema/CinemaList"; // Reusable Cinema component
 
 const CinemasScreen = () => {
 	const dispatch = useDispatch();

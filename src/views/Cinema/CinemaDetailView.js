@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { ScrollView, View, Text, TouchableOpacity } from "react-native";
-import { getMoviesInCinema } from "../../redux/movies/movies_slice";
+import { getMoviesInCinema } from "../../redux/actions/movieActions";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import Movie from "../../components/Movie";
+import Movie from "../../components/Movie/MovieList";
 
 const CinemaDetailView = () => {
 	const route = useRoute();

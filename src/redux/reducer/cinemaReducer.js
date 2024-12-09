@@ -1,39 +1,22 @@
-// redux/reducer/cinemaReducer.js
-import {
-    FETCH_CINEMAS_REQUEST,
-    FETCH_CINEMAS_SUCCESS,
-    FETCH_CINEMAS_FAILURE,
-} from "../actions/cinemaActions";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    cinemas: [],
-    loading: false,
-    error: null,
-};
+const cinemaSlice = createSlice({
+	name: "cinema",
+	initialState: {
+		cinemas: [],
+		cinemasError: undefined,
+	},
+	reducer: {
+		getCinemasReceived: (state, action) => {
+			state.cinemasError = undefined;
+			state.cinemas = action.payload;
+		},
+		getCinemasError: (state, action) => {
+			state.cinemasError = action.payload;
+		},
+	},
+});
 
-const cinemaReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case FETCH_CINEMAS_REQUEST:
-            return {
-                ...state,
-                loading: true,
-                error: null,
-            };
-        case FETCH_CINEMAS_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                cinemas: action.payload,
-            };
-        case FETCH_CINEMAS_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload,
-            };
-        default:
-            return state;
-    }
-};
+export const { getCinemasReceived, getCinemasError } = cinemaSlice.actions;
 
-export default cinemaReducer;
+export default cinemaSlice.reducer;

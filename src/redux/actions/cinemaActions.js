@@ -1,27 +1,25 @@
-import axios from "axios";
-import { getAccessToken, baseUrl } from "../auth/auth";
+import { getAccessToken, baseUrl } from "../auth/auth.js";
+import { getCinemasReceived, getCinemasError } from "../reducer/cinemaReducer";
 
-export const FETCH_CINEMAS_REQUEST = "FETCH_CINEMAS_REQUEST";
-export const FETCH_CINEMAS_SUCCESS = "FETCH_CINEMAS_SUCCESS";
-export const FETCH_CINEMAS_FAILURE = "FETCH_CINEMAS_FAILURE";
+export function getCinemas() {
+	return async (dispatch) => {
+		try {
+			const accessToken = await getAccessToken();
+			const response = await fetch(`${baseUrl}/theaters`, {
+				method: "GET",
+				headers: {
+					"x-access-token": accessToken,
+				},
+			});
 
-export const fetchCinemas = () => async (dispatch) => {
-    dispatch({ type: FETCH_CINEMAS_REQUEST });
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
 
-    try {
-        // Get the token
-        const token = await getAccessToken();
-
-        // Fetch cinemas with the token
-        const response = await axios.get(`${baseUrl}/theaters`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        console.log(response.data)
-
-        dispatch({ type: FETCH_CINEMAS_SUCCESS, payload: response.data });
-    } catch (error) {
-        dispatch({ type: FETCH_CINEMAS_FAILURE, payload: error.message });
-    }
-};
+			const cinemas = await response.json();
+			dispatch(getCinemasReceived(cinemas));
+		} catch (err) {
+			dispatch(getCinemasError(err.toString()));
+		}
+	};
+}
