@@ -10,7 +10,7 @@ const moviesSlice = createSlice({
 		moviesError: undefined,
 		upcomingMoviesError: undefined,
 	},
-	reducer: {
+	reducers: {
 		setSelectedCinemaReceived: (state, action) => {
 			state.selectedCinema = action.payload;
 		},
