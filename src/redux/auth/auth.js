@@ -1,8 +1,8 @@
 import { Base64 } from 'js-base64';
 
 export const baseUrl = 'https://api.kvikmyndir.is';
-export const username = 'arona22';
-export const password = 'Verksmidja107';
+export const username = 'aroneh19';
+export const password = 'Gateway.1';
 export const base64Credentials = Base64.encode(`${username}:${password}`);
 
 export const getAccessToken = async () => {
