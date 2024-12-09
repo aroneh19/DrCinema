@@ -6,7 +6,7 @@ const cinemaSlice = createSlice({
 		cinemas: [],
 		cinemasError: undefined,
 	},
-	reducer: {
+	reducers: {
 		getCinemasReceived: (state, action) => {
 			state.cinemasError = undefined;
 			state.cinemas = action.payload;
