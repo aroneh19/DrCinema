@@ -1,4 +1,7 @@
 import { Base64 } from 'js-base64';
+//import dotenv from 'dotenv';
+
+//dotenv.config();
 
 export const baseUrl = 'https://api.kvikmyndir.is';
 export const username = 'aroneh19';
