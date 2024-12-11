@@ -5,6 +5,7 @@ import {
 	TouchableOpacity,
 	StyleSheet,
 	FlatList,
+	Linking,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import MoviesScreen from "../Movie/MovieListView"; // Import the MoviesScreen component
@@ -42,19 +43,23 @@ const CinemaDetailView = () => {
 					ListHeaderComponent={() => (
 						<Text style={styles.title}>{cinema.name}</Text>
 					)}
-					renderItem={({ item }) => (
-						<Text
-							style={item.link ? styles.link : styles.info}
-							onPress={
-								item.link
-									? () => {
-											// Handle link navigation if needed
-									  }
-									: undefined
-							}>
-							{item.label}
-						</Text>
-					)}
+					renderItem={({ item }) => {
+						if (item.link) {
+							return (
+								<View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+									<Text style={styles.info}>{item.label.split(":")[0]}: </Text>
+									<Text
+										style={styles.link}
+										onPress={() =>
+											Linking.openURL("https://" + cinema.website)
+										}>
+										{cinema.website}
+									</Text>
+								</View>
+							);
+						}
+						return <Text style={styles.info}>{item.label}</Text>;
+					}}
 					ListFooterComponent={() => (
 						<View style={styles.moviesContainer}>
 							{/* Render MoviesScreen */}
