@@ -70,6 +70,25 @@ const CinemaDetailView = () => {
 								</View>
 							);
 						}
+						if (item.key === "address") {
+							// Handle clickable address
+							const address = `${cinema["address\t"]}, ${cinema.city}`;
+							const encodedAddress = encodeURIComponent(address);
+							return (
+								<View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+									<Text style={styles.info}>{item.label.split(":")[0]}: </Text>
+									<Text
+										style={styles.link}
+										onPress={() =>
+											Linking.openURL(
+												`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
+											)
+										}>
+										{address}
+									</Text>
+								</View>
+							);
+						}
 						return <Text style={styles.info}>{item.label}</Text>;
 					}}
 					ListFooterComponent={() => (
