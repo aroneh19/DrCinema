@@ -7,7 +7,7 @@ import {useNavigation} from "@react-navigation/native";
 
 const MoviesScreen = ({ route }) => {
     const navigation = useNavigation();
-
+  
     const { cinema } = route.params; // Get selected cinema ID
     const dispatch = useDispatch();
 
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MoviesScreen;
+export default MoviesView;

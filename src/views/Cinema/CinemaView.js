@@ -1,5 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import { View, Text, FlatList, TouchableOpacity, Animated, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import {
+	View,
+	FlatList,
+	Text,
+	ActivityIndicator,
+	StyleSheet,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinemas } from "../../redux/actions/cinemaActions";
 import { getUpcomingMovies } from "../../redux/actions/movieActions";
