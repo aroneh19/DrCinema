@@ -15,6 +15,12 @@ const CinemaDetailView = () => {
 	const navigation = useNavigation();
 	const { cinema } = route.params;
 
+	// Helper function to clean HTML tags
+	const cleanText = (text) => {
+		if (!text) return "";
+		return text.replace(/<[^>]+>/g, ""); // Regex to remove HTML tags
+	};
+
 	// Array of static content to render above the movies list
 	const details = [
 		{ key: "name", label: cinema.name },
@@ -24,7 +30,7 @@ const CinemaDetailView = () => {
 		},
 		{ key: "phone", label: `Phone number: ${cinema.phone}` },
 		{ key: "website", label: `Website: ${cinema.website}`, link: true },
-		{ key: "description", label: cinema.description },
+		{ key: "description", label: cleanText(cinema.description) },
 	];
 
 	return (
