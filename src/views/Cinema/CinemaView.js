@@ -7,6 +7,7 @@ import Cinema from "../../components/Cinema/CinemaList";
 import Movie from "../../components/Movie/MovieList";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
+import moment from "moment";
 
 const CinemasAndMoviesScreen = () => {
 	const navigation = useNavigation();
@@ -64,12 +65,16 @@ const CinemasAndMoviesScreen = () => {
 		/>
 	);
 
+	const formatReleaseDate = (date) =>
+		moment(date).format("DD. MMM. YYYY").toLowerCase();
+
 	const renderMovieItem = ({ item }) => (
 		<Movie
 			movie={{
 				poster: item.poster,
 				title: item.title,
 				year: item.year,
+				releasedate: formatReleaseDate(item["release-dateIS"]),
 				genres: item.genres || [], // Ensure it's an array
 			}}
 			onPress={() => navigation.navigate("MovieView", { movie: item })}
@@ -107,8 +112,8 @@ const CinemasAndMoviesScreen = () => {
 			);
 		}
 
-		const sortedUpcoming = [...upcomingMovies].sort((a, b) =>
-			a.year.localeCompare(b.year)
+		const sortedUpcoming = [...upcomingMovies].sort(
+			(a, b) => new Date(a["release-dateIS"]) - new Date(b["release-dateIS"])
 		);
 
 		return (
