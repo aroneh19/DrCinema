@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviesInCinema } from "../../redux/actions/movieActions";
 import Movie from "../../components/Movie/MovieList";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "./stylesList";
 
 const MoviesScreen = ({ route }) => {
 	const navigation = useNavigation();
@@ -47,32 +48,5 @@ const MoviesScreen = ({ route }) => {
 		</View>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 16,
-		backgroundColor: "#fff",
-	},
-	loading: {
-		flex: 1,
-		justifyContent: "center",
-	},
-	errorContainer: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	errorText: {
-		color: "red",
-		fontSize: 16,
-	},
-	emptyText: {
-		textAlign: "center",
-		fontSize: 16,
-		color: "#555",
-		marginTop: 20,
-	},
-});
 
 export default MoviesScreen;
