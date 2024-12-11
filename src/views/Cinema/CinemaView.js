@@ -30,7 +30,7 @@ const CinemasScreen = () => {
 	const renderCinemaItem = ({ item }) => (
 		<Cinema
 			cinema={item}
-			onPress={() => navigation.navigate("MovieList", { cinema: item })}
+			onPress={() => navigation.navigate("CinemaDetailView", { cinema: item })}
 		/>
 	);
 
