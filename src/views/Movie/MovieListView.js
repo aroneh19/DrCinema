@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MoviesView;
+export default MoviesScreen;
