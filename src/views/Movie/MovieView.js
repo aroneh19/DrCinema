@@ -34,7 +34,7 @@ const MovieView = () => {
 
 	return (
 		<View style={styles.screenView}>
-			<View style={styles.contentContainer}>
+			<ScrollView style={styles.contentContainer}>
 				<TouchableOpacity
 					style={styles.goBackButton}
 					onPress={() => navigation.goBack()}
@@ -71,7 +71,7 @@ const MovieView = () => {
 						/>
 					)}
 				</ScrollView>
-			</View>
+			</ScrollView>
 		</View>
 	);
 };
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
 		height: 200,
 		borderRadius: 10,
 		marginTop: 20,
+		marginBottom: 20,
 	},
 });
 
