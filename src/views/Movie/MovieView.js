@@ -66,7 +66,9 @@ const MovieView = () => {
 				</TouchableOpacity>
 				<ScrollView>
 					<Text style={styles.movieTitle}>{movie.title}</Text>
-					<Image source={{ uri: movie.poster }} style={styles.movieImage} />
+					<Image source={{ uri: movie.poster }} style={styles.movieImage}
+						   resizeMode="contain" // Ensure the entire image is visible
+					/>
 					<Text style={styles.moviePlot}>{movie.plot}</Text>
 					{movie.durationMinutes && (
 						<Text style={styles.movieInfo}>
@@ -111,8 +113,9 @@ const MovieView = () => {
 
 const styles = StyleSheet.create({
 	screenView: {
+		paddingVertical: 20,
 		flex: 1,
-		backgroundColor: "#f8f8f8",
+		backgroundColor: "#f0f4f7", // Light background for a modern look
 	},
 	contentContainer: {
 		padding: 20,
@@ -120,37 +123,50 @@ const styles = StyleSheet.create({
 	goBackButton: {
 		paddingVertical: 10,
 		paddingHorizontal: 20,
-		backgroundColor: "#333",
-		borderRadius: 5,
-		marginBottom: 15,
+		backgroundColor: "#344955", // Consistent dark accent
+		borderRadius: 8,
+		marginBottom: 20,
 		alignSelf: "flex-start",
+		elevation: 3, // Shadow for Android
+		shadowColor: "#000", // Shadow for iOS
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.2,
+		shadowRadius: 3,
 	},
 	goBackText: {
 		color: "#fff",
 		fontSize: 16,
+		fontWeight: "bold",
 	},
 	movieTitle: {
-		fontSize: 24,
+		fontSize: 28,
 		fontWeight: "bold",
-		marginBottom: 15,
-		color: "#222",
+		marginBottom: 20,
+		color: "#344955", // Matches other headings
+		textAlign: "center",
 	},
 	movieImage: {
 		width: "100%",
 		height: 300,
-		borderRadius: 10,
-		marginBottom: 20,
+		borderRadius: 100, // Smooth rounded corners
+		marginBottom: 10,
+		elevation: 3,
+		shadowColor: "#000",
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 10,
+		shadowRadius: 10,
 	},
 	moviePlot: {
 		fontSize: 16,
 		color: "#555",
-		marginBottom: 15,
-		lineHeight: 22,
+		marginBottom: 20,
+		lineHeight: 24,
+		textAlign: "justify",
 	},
 	movieInfo: {
-		fontSize: 14,
-		color: "#666",
-		marginBottom: 5,
+		fontSize: 16,
+		color: "#555", // Neutral color for info text
+		marginBottom: 8,
 	},
 	showtimeList: {
 		marginTop: 20,
@@ -159,37 +175,52 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		padding: 10,
-		backgroundColor: "#e8e8e8",
-		borderRadius: 5,
-		marginBottom: 10,
+		padding: 12,
+		backgroundColor: "#ffffff", // White background for showtime cards
+		borderRadius: 8,
+		marginBottom: 12,
+		elevation: 2, // Light shadow
+		shadowColor: "#000",
+		shadowOffset: { width: 0, height: 1 },
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
 	},
 	showtimeText: {
 		fontSize: 14,
-		color: "#333",
+		color: "#344955",
+		fontWeight: "600",
 	},
 	purchaseButton: {
-		backgroundColor: "#007bff",
-		paddingVertical: 5,
-		paddingHorizontal: 15,
-		borderRadius: 5,
+		backgroundColor: "#f9aa33", // Accent color
+		paddingVertical: 6,
+		paddingHorizontal: 10,
+		borderRadius: 6,
 	},
 	purchaseButtonText: {
 		color: "#fff",
 		fontSize: 14,
+		fontWeight: "bold",
 	},
 	noShowtimes: {
-		fontSize: 14,
+		fontSize: 16,
 		color: "#888",
 		textAlign: "center",
 		marginTop: 20,
+		fontStyle: "italic",
 	},
 	videoPlayer: {
-		height: 200,
-		borderRadius: 10,
+		height: 220,
+		borderRadius: 12,
 		marginTop: 20,
 		marginBottom: 20,
+		overflow: "hidden",
+		elevation: 3,
+		shadowColor: "#000",
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.2,
+		shadowRadius: 4,
 	},
 });
+
 
 export default MovieView;
