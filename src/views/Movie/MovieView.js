@@ -55,9 +55,6 @@ const MovieView = () => {
 		  )
 		: null;
 	const officialTrailerUrl = officialTrailer ? officialTrailer.url : null;
-	console.log(hasTrailersWithResults);
-	console.log(officialTrailerUrl);
-	console.log(officialTrailerUrl);
 
 	return (
 		<View style={styles.screenView}>

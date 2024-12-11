@@ -8,7 +8,6 @@ import { styles } from "./stylesList";
 
 const MoviesScreen = ({ route }) => {
 	const navigation = useNavigation();
-
 	const { cinema } = route.params; // Get selected cinema ID
 	const dispatch = useDispatch();
 
