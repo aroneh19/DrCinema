@@ -20,9 +20,6 @@ const MovieView = () => {
 	const movies = useSelector((state) => state.movies);
 	const selectedCinemaId = movies.selectedCinema.id;
 
-	const formatReleaseDate = (date) =>
-		moment(date).format("DD. MMM. YYYY").toLowerCase();
-
 	const renderShowtimes = (schedule, cinemaName) => {
 		return schedule.map((item, index) => {
 			const dateTime = moment(item.time, "HH.mm (S)").toDate();
@@ -78,10 +75,6 @@ const MovieView = () => {
 						</Text>
 					)}
 					<Text style={styles.movieInfo}> Year: {movie.year} </Text>
-					<Text style={styles.movieInfo}>
-						{" "}
-						Release Date: {formatReleaseDate(movie["release-dateIS"])}
-					</Text>
 					<Text style={styles.movieInfo}>
 						{" "}
 						Genres: {movie.genres[0]?.Name || "N/A"}{" "}
