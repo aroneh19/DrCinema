@@ -3,7 +3,6 @@ import {
 	View,
 	FlatList,
 	Text,
-	ActivityIndicator,
 	StyleSheet,
 	Animated,
 	TouchableOpacity,
@@ -24,10 +23,10 @@ const CinemasAndMoviesScreen = () => {
 		dispatch(getUpcomingMovies());
 	}, [dispatch]);
 
-
 	const { cinemas, error: cinemaError } = useSelector((state) => state.cinema);
-	const { upcomingMovies, error: moviesError } = useSelector((state) => state.movies);
-
+	const { upcomingMovies, error: moviesError } = useSelector(
+		(state) => state.movies
+	);
 
 	const [selectedNavOption, setSelectedNavOption] = useState(0);
 	const underlineWidth = useRef(new Animated.Value(100)).current;
@@ -52,8 +51,7 @@ const CinemasAndMoviesScreen = () => {
 					key={index}
 					style={styles.navigationOption}
 					onPress={option.onPress}
-					disabled={index === selectedNavOption}
-				>
+					disabled={index === selectedNavOption}>
 					<Text style={styles.navigationText}>{option.name}</Text>
 					{index === selectedNavOption && (
 						<Animated.View
