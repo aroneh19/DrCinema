@@ -1,5 +1,11 @@
-import React, { useEffect } from "react";
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	StyleSheet,
+	FlatList,
+} from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import MoviesScreen from "../Movie/MovieListView"; // Import the MoviesScreen component
 
@@ -7,6 +13,18 @@ const CinemaDetailView = () => {
 	const route = useRoute();
 	const navigation = useNavigation();
 	const { cinema } = route.params;
+
+	// Array of static content to render above the movies list
+	const details = [
+		{ key: "name", label: cinema.name },
+		{
+			key: "address",
+			label: `Address: ${cinema["address\t"]}, ${cinema.city}`,
+		},
+		{ key: "phone", label: `Phone number: ${cinema.phone}` },
+		{ key: "website", label: `Website: ${cinema.website}`, link: true },
+		{ key: "description", label: cinema.description },
+	];
 
 	return (
 		<View style={styles.screenView}>
@@ -16,20 +34,37 @@ const CinemaDetailView = () => {
 					onPress={() => navigation.goBack()}>
 					<Text style={styles.goBackText}>{"< Back"}</Text>
 				</TouchableOpacity>
-				<ScrollView style={styles.cinemaDetail}>
-					<Text style={styles.title}>{cinema.name}</Text>
-					<Text style={styles.info}>
-						Address: {cinema["address\t"]}, {cinema.city}
-					</Text>
-					<Text style={styles.info}>Phone number: {cinema.phone}</Text>
-					<Text style={styles.link}>Website: {cinema.website}</Text>
-					<Text style={styles.description}>{cinema.description}</Text>
-				</ScrollView>
 
-				{/* Reuse the MoviesScreen component */}
-				<View style={styles.moviesContainer}>
-					<MoviesScreen route={{ params: { cinema } }} navigation={navigation} />
-				</View>
+				{/* Use FlatList to avoid nesting */}
+				<FlatList
+					data={details}
+					keyExtractor={(item) => item.key}
+					ListHeaderComponent={() => (
+						<Text style={styles.title}>{cinema.name}</Text>
+					)}
+					renderItem={({ item }) => (
+						<Text
+							style={item.link ? styles.link : styles.info}
+							onPress={
+								item.link
+									? () => {
+											// Handle link navigation if needed
+									  }
+									: undefined
+							}>
+							{item.label}
+						</Text>
+					)}
+					ListFooterComponent={() => (
+						<View style={styles.moviesContainer}>
+							{/* Render MoviesScreen */}
+							<MoviesScreen
+								route={{ params: { cinema } }}
+								navigation={navigation}
+							/>
+						</View>
+					)}
+				/>
 			</View>
 		</View>
 	);
@@ -64,9 +99,6 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: "bold",
 	},
-	cinemaDetail: {
-		marginBottom: 16,
-	},
 	title: {
 		fontSize: 24,
 		fontWeight: "bold",
@@ -85,24 +117,6 @@ const styles = StyleSheet.create({
 		marginBottom: 6,
 		textDecorationLine: "underline",
 	},
-	description: {
-		fontSize: 14,
-		color: "#777",
-		marginBottom: 16,
-		lineHeight: 20,
-	},
-	loading: {
-		textAlign: "center",
-		fontSize: 16,
-		color: "#777",
-		marginTop: 20,
-	},
-	noMovies: {
-		textAlign: "center",
-		fontSize: 16,
-		color: "#888",
-		marginTop: 20,
-	},
 	moviesContainer: {
 		flex: 1,
 		marginTop: 16,
@@ -110,4 +124,3 @@ const styles = StyleSheet.create({
 });
 
 export default CinemaDetailView;
-
