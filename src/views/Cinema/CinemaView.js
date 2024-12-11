@@ -113,9 +113,13 @@ const CinemasAndMoviesScreen = () => {
 			);
 		}
 
+		const sortedUpcoming = [...upcomingMovies].sort((a, b) =>
+			a.year.localeCompare(b.year)
+		);
+
 		return (
 			<FlatList
-				data={upcomingMovies}
+				data={sortedUpcoming}
 				keyExtractor={(item) => item.id.toString()}
 				renderItem={renderMovieItem}
 				contentContainerStyle={styles.listContainer}

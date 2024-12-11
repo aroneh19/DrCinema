@@ -66,10 +66,11 @@ const MovieView = () => {
 				</TouchableOpacity>
 				<ScrollView>
 					<Text style={styles.movieTitle}>{movie.title}</Text>
-					<Image source={{ uri: movie.poster }} style={styles.movieImage}
-						   resizeMode="contain" // Ensure the entire image is visible
+					<Image
+						source={{ uri: movie.poster }}
+						style={styles.movieImage}
+						resizeMode="contain" // Ensure the entire image is visible
 					/>
-					<Text style={styles.moviePlot}>{movie.plot}</Text>
 					{movie.durationMinutes && (
 						<Text style={styles.movieInfo}>
 							{" "}
@@ -81,6 +82,7 @@ const MovieView = () => {
 						{" "}
 						Genres: {movie.genres[0]?.Name || "N/A"}{" "}
 					</Text>
+					<Text style={styles.moviePlot}>{movie.plot} </Text>
 
 					<View style={styles.showtimeList}>
 						{movie.showtimes && movie.showtimes.length > 0 ? (
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 300,
 		borderRadius: 100, // Smooth rounded corners
-		marginBottom: 10,
+		marginBottom: 20,
 		elevation: 3,
 		shadowColor: "#000",
 		shadowOffset: { width: 0, height: 2 },
@@ -159,9 +161,9 @@ const styles = StyleSheet.create({
 	moviePlot: {
 		fontSize: 16,
 		color: "#555",
-		marginBottom: 20,
+		marginBottom: 8,
 		lineHeight: 24,
-		textAlign: "justify",
+		marginTop: 8,
 	},
 	movieInfo: {
 		fontSize: 16,
@@ -221,6 +223,5 @@ const styles = StyleSheet.create({
 		shadowRadius: 4,
 	},
 });
-
 
 export default MovieView;

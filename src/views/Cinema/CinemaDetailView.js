@@ -23,7 +23,6 @@ const CinemaDetailView = () => {
 
 	// Array of static content to render above the movies list
 	const details = [
-		{ key: "name", label: cinema.name },
 		{
 			key: "address",
 			label: `Address: ${cinema["address\t"]}, ${cinema.city}`,
@@ -144,6 +143,5 @@ const styles = StyleSheet.create({
 		borderTopColor: "#ddd", // Subtle divider for separation
 	},
 });
-
 
 export default CinemaDetailView;

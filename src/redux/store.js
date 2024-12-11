@@ -8,6 +8,3 @@ export default configureStore({
 		movies: movieReducer,
 	},
 });
-
-
-

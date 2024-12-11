@@ -1,31 +1,31 @@
-import { Base64 } from 'js-base64';
+import { Base64 } from "js-base64";
 //import dotenv from 'dotenv';
 
 //dotenv.config();
 
-export const baseUrl = 'https://api.kvikmyndir.is';
-export const username = 'aroneh19';
-export const password = 'Gateway.1';
+export const baseUrl = "https://api.kvikmyndir.is";
+export const username = "aroneh19";
+export const password = "Gateway.1";
 export const base64Credentials = Base64.encode(`${username}:${password}`);
 
 export const getAccessToken = async () => {
-  const response = await fetch(`${baseUrl}/authenticate`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${base64Credentials}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      username,
-      password
-    })
-  });
+	const response = await fetch(`${baseUrl}/authenticate`, {
+		method: "POST",
+		headers: {
+			Authorization: `Basic ${base64Credentials}`,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			username,
+			password,
+		}),
+	});
 
-  const data = await response.json();
+	const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || 'Could not authenticate');
-  }
+	if (!response.ok) {
+		throw new Error(data.message || "Could not authenticate");
+	}
 
-  return data.token;
+	return data.token;
 };
