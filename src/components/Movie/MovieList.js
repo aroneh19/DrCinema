@@ -9,7 +9,9 @@ const Movie = ({ movie, onPress }) => {
 			<View style={styles.details}>
 				<Text style={styles.title}>{movie.title}</Text>
 				<Text style={styles.year}>Year: {movie.year}</Text>
-				<Text style={styles.year}>Release Date: {movie.releasedate}</Text>
+				{movie.releasedate && (
+					<Text style={styles.year}>Release Date: {movie.releasedate}</Text>
+				)}
 				<Text style={styles.genres}>
 					Genres:{" "}
 					{movie.genres && Array.isArray(movie.genres)
