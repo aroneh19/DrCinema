@@ -3,13 +3,15 @@ import { View, FlatList, Text, ActivityIndicator, StyleSheet } from "react-nativ
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviesInCinema } from "../../redux/actions/movieActions";
 import Movie from "../../components/Movie/MovieList";
+import {useNavigation} from "@react-navigation/native";
 
-const MoviesView = ({ route, navigation }) => {
+const MoviesScreen = ({ route }) => {
+    const navigation = useNavigation();
+  
     const { cinema } = route.params; // Get selected cinema ID
-    console.log(cinema)
     const dispatch = useDispatch();
 
-    const { movies, error } = useSelector((state) => state.movies);
+    const { movies, moviesAreLoading } = useSelector((state) => state.movies);
 
 
     useEffect(() => {
@@ -17,10 +19,10 @@ const MoviesView = ({ route, navigation }) => {
     }, [dispatch]);
 
 
-    if (error) {
+    if (moviesAreLoading) {
         return (
             <View style={styles.errorContainer}>
-                <Text style={styles.errorText}>{error}</Text>
+                <Text style={styles.errorText}>Movies are Loading</Text>
             </View>
         );
     }
@@ -28,7 +30,7 @@ const MoviesView = ({ route, navigation }) => {
     const renderMovieItem = ({ item }) => (
         <Movie
             movie={item}
-            onPress={() => navigation.navigate("MovieDetails", { movieId: item.id })}
+            onPress={() => navigation.navigate("MovieView", { movie: item })}
         />
     );
 

@@ -9,7 +9,12 @@ const Movie = ({ movie, onPress }) => {
                 <Text style={styles.title}>{movie.title}</Text>
                 <Text style={styles.year}>Year: {movie.year}</Text>
                 <Text style={styles.genres}>
-                    Genres: {movie.genres.map((genre) => genre.Name.trim()).join(", ")}
+                    Genres:{" "}
+                    {movie.genres && Array.isArray(movie.genres)
+                        ? movie.genres
+                            .map((genre) => genre.Name?.trim() || "Unknown")
+                            .join(", ")
+                        : "Unknown"}
                 </Text>
             </View>
         </TouchableOpacity>
