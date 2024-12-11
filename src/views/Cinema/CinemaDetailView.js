@@ -21,7 +21,7 @@ const CinemaDetailView = () => {
 			key: "address",
 			label: `Address: ${cinema["address\t"]}, ${cinema.city}`,
 		},
-		{ key: "phone", label: `Phone number: ${cinema.phone}` },
+		{ key: "phone", label: `Phone number: ${cinema.phone}`, phone: true },
 		{ key: "website", label: `Website: ${cinema.website}`, link: true },
 		{ key: "description", label: cleanText(cinema.description) },
 	];
@@ -53,6 +53,19 @@ const CinemaDetailView = () => {
 											Linking.openURL("https://" + cinema.website)
 										}>
 										{cinema.website}
+									</Text>
+								</View>
+							);
+						}
+						if (item.phone) {
+							// Handle clickable phone number
+							return (
+								<View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+									<Text style={styles.info}>{item.label.split(":")[0]}: </Text>
+									<Text
+										style={styles.link}
+										onPress={() => Linking.openURL(`tel:${cinema.phone}`)}>
+										{cinema.phone}
 									</Text>
 								</View>
 							);

@@ -4,7 +4,6 @@ import moment from "moment";
 import { styles } from "./styles";
 
 const Movie = ({ movie, onPress }) => {
-	console.log(movie);
 	return (
 		<TouchableOpacity style={styles.movieItem} onPress={onPress}>
 			<Image source={{ uri: movie.poster }} style={styles.thumbnail} />
