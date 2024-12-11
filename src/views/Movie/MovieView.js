@@ -76,14 +76,18 @@ const MovieView = () => {
 					)}
 					<Text style={styles.movieInfo}> Year: {movie.year} </Text>
 					<Text style={styles.movieInfo}>
-						{" "}
-						Genres: {movie.genres[0]?.Name || "N/A"}{" "}
+						Genres:{" "}
+						{movie.genres && Array.isArray(movie.genres)
+							? movie.genres
+									.map((genre) => genre.Name?.trim() || "Unknown")
+									.join(", ")
+							: "Unknown"}
 					</Text>
 					<Text style={styles.moviePlot}>{movie.plot} </Text>
 
 					<View style={styles.showtimeList}>
 						{movie.showtimes && movie.showtimes.length > 0 ? (
-							movie.showtimes.map((showtime, index) => {
+							movie.showtimes.map((showtime) => {
 								if (showtime.cinema.id === selectedCinemaId) {
 									return renderShowtimes(
 										showtime.schedule,
